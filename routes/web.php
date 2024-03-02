@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActualizarPrecioController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\HomeController;
@@ -34,7 +35,8 @@ Route::resources([
     'ventas' => VentaController::class,
     'usuarios' => UserController::class,
     'roles' => RoleController::class,
-    'profile' => ProfileController::class
+    'profile' => ProfileController::class,
+    'actualizar' => ActualizarPrecioController::class
 ]);
 
 Route::get('/401', function() {
