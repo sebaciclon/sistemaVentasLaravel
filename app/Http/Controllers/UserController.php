@@ -24,6 +24,7 @@ class UserController extends Controller
         $this->middleware('permission:eliminar-user', ['only' => ['destroy']]);
     }
     
+    
     public function index()
     {
         $users = User::all();

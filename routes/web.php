@@ -23,6 +23,8 @@ Route::post('/login', [LoginController::class, 'login']);
 
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
+
+
 Route::resources([
     'categorias' => CategoriaController::class,
     'productos' => ProductoController::class,

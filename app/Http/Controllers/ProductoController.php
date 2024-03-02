@@ -24,6 +24,7 @@ class ProductoController extends Controller
     }
 
     
+    
     public function index()
     {
         
