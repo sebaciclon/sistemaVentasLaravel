@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ActualizarPrecioController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\HomeController;
@@ -24,7 +23,14 @@ Route::post('/login', [LoginController::class, 'login']);
 
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-
+// RUTA DE USUARIO
+Route::controller(ProductoController::class)->middleware('auth')->group(function(){
+    Route::get('productos/porCategoria','porCategoria')->name('porCategoria');
+    Route::get('productos/seleccionarCategoria','elegirCategoria')->name('seleccionarCategoria');
+    Route::get('productos/actualizarPreciosPorCategoria','actualizarCategoria')->name('actualizarPreciosPorCategoria');
+    //Route::post('productos/actualizarPreciosPorCategoria','actualizarCategoria')->name('actualizarPreciosPorCategoria');
+    
+});
 
 Route::resources([
     'categorias' => CategoriaController::class,
@@ -36,7 +42,7 @@ Route::resources([
     'usuarios' => UserController::class,
     'roles' => RoleController::class,
     'profile' => ProfileController::class,
-    'actualizar' => ActualizarPrecioController::class
+    
 ]);
 
 Route::get('/401', function() {

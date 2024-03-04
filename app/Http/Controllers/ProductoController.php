@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\storeProductoRequest;
 use App\Http\Requests\updateProductoRequest;
 use App\Models\Categoria;
-use App\Models\Compra_producto;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Exception;
@@ -23,7 +22,26 @@ class ProductoController extends Controller
         $this->middleware('permission:eliminar-producto', ['only' => ['destroy']]);
     }
 
-    
+    public function porCategoria(Request $request) 
+    {
+        $productos = Producto::all()
+        ->where('categoria_id', $request->categoria_id)
+        ;
+        //dd($compras);
+        return view('producto.indexCategoria', ['productos' => $productos]);
+    }
+
+    public function elegirCategoria() 
+    {
+        $categorias = Categoria::all();
+        
+        return view('producto.elegirCategoria', ['categorias' => $categorias]);
+    }
+
+    public function actualizarCategoria(Request $request) 
+    {
+        dd($request);
+    }
     
     public function index()
     {
@@ -116,7 +134,7 @@ class ProductoController extends Controller
         return redirect()->route('productos.index')->with('success', 'Producto actualizado exitosamente');
     }
 
-    
+       
     public function destroy($id)
     {
         $message = '';
