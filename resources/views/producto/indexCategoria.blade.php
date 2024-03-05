@@ -35,9 +35,9 @@
             <li class="breadcrumb-item"><a href="{{ route('panel') }}">Inicio</a></li>
             <li class="breadcrumb-item active">Productos para actualizar precios</li>
         </ol>
-        <!--<form action="{{ route('actualizarPreciosPorCategoria') }}" method="POST" enctype="multipart/form-data"> 
+        <form action="{{ route('actualizarPreciosPorCategoria') }}" method="GET" enctype="multipart/form-data"> 
             @csrf
-            @method('PATCH')-->
+            
 
             <div class="col-md-4">
                 <label for="" class="form-label mb-4">Ingrese el porcentaje de actualización <span class="text-muted">(obligatorio)</span></label>
@@ -46,8 +46,8 @@
                     <small class="text-danger">{{ '*'. $message }}</small>
                 @enderror
             </div>
-
-            <a href="{{ route('actualizarPreciosPorCategoria')}}"><button type="button" class="btn btn-primary mb-4 mt-4">Actualizar</button></a>
+            
+            <!--<a href="{{ route('actualizarPreciosPorCategoria')}}"><button type="button" class="btn btn-primary mb-4 mt-4">Actualizar</button></a>-->
 
             <div class="card mb-4">
                 <div class="card-header">
@@ -62,12 +62,12 @@
                                 <th>Nombre</th>
                                 <th>Marca</th>
                                 <th>Precio</th>
-                                
                             </tr>
                         </thead>
                         
                         <tbody>
                             @foreach ($productos as $producto)
+                                <input type="text" name="categoria_id" id="categoria_id" value="{{$producto->categoria_id}}">
                                 <tr>
                                     <td>
                                         <div class="container">
@@ -75,11 +75,10 @@
                                                 <span class="m-1 rounded-pill p-1 bg-secondary text-white text-center">{{$producto->categoria->nombre}}</span>
                                             </div>
                                         </div>
-                                        
                                     </td>
                                     <td>{{$producto->nombre}}</td>
                                     <td>{{$producto->marca}}</td>
-                                    <input type="hidden" name="categoria_id" value="{{$producto->categoria->id}}">
+                                    
                                     <!--<td>{{$producto->categoria->id}}</td>-->
                                     <td>{{$producto->precio_venta}}</td>
                                 </tr>
@@ -94,7 +93,7 @@
                 <button type="submit" class="btn btn-primary">Actualizar</button>
                 <button type="reset" class="btn btn-secondary">Cancelar cambios</button>
             </div>
-        <!--</form>-->
+        </form>
     </div>
 @endsection
     

@@ -27,8 +27,9 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::controller(ProductoController::class)->middleware('auth')->group(function(){
     Route::get('productos/porCategoria','porCategoria')->name('porCategoria');
     Route::get('productos/seleccionarCategoria','elegirCategoria')->name('seleccionarCategoria');
-    Route::get('productos/actualizarPreciosPorCategoria','actualizarCategoria')->name('actualizarPreciosPorCategoria');
     //Route::post('productos/actualizarPreciosPorCategoria','actualizarCategoria')->name('actualizarPreciosPorCategoria');
+    Route::get('productos/actualizarPreciosPorCategoria','actualizarCategoria')
+        ->name('actualizarPreciosPorCategoria');
     
 });
 

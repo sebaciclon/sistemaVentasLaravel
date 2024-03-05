@@ -48,7 +48,7 @@
                 </div>
                 <!-- SELECT CATEGORIAS -->
                 <div class="col-md-6">
-                        <select title="Seleccione una categoría" data-size="5" data-live-search="true" name="categoria_id" id="categoria_id" class="form-control selectpicker show-tick">
+                        <select required title="Seleccione una categoría" data-size="5" data-live-search="true" name="categoria_id" id="categoria_id" class="form-control selectpicker show-tick">
                             @foreach($categorias as $tipo)
                                 <option value="{{$tipo->id}}" {{ old('categoria_id') == $tipo->id ? 'selected' : '' }}>{{$tipo->nombre}}</option>
                             @endforeach

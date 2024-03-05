@@ -22,25 +22,55 @@ class ProductoController extends Controller
         $this->middleware('permission:eliminar-producto', ['only' => ['destroy']]);
     }
 
-    public function porCategoria(Request $request) 
-    {
-        $productos = Producto::all()
-        ->where('categoria_id', $request->categoria_id)
-        ;
-        //dd($compras);
-        return view('producto.indexCategoria', ['productos' => $productos]);
-    }
-
     public function elegirCategoria() 
     {
+        
         $categorias = Categoria::all();
         
         return view('producto.elegirCategoria', ['categorias' => $categorias]);
     }
 
+    public function porCategoria(Request $request) 
+    {
+        $productos = Producto::all()
+        ->where('categoria_id', $request->categoria_id)
+        ;
+        $id = $request->categoria_id;
+        return view('producto.indexCategoria', ['productos' => $productos, 'id' => $id]);
+    }
+
+    
+
     public function actualizarCategoria(Request $request) 
     {
-        dd($request);
+        //dd($request);
+        
+        $productos = Producto::all()
+        ->where('categoria_id', $request->categoria_id);
+
+        $cont = 0;
+        $sizeArray = count($productos);
+        while($cont < $sizeArray) {
+            if($productos[$cont]->categoria_id ==  $request->categoria_id) {
+                $porcentaje = $request->porcentaje * $productos[$cont]->precio_venta /100;
+                $precio_final = $porcentaje + $productos[$cont]->precio_venta;
+                $productos[$cont]->precio_venta = $precio_final;
+
+                DB::table('productos')->where('id', $productos[$cont]->id)
+                ->update(['precio_venta' => $precio_final]);
+
+                
+                DB::table('compra_producto')->where('id', $productos[$cont]->id)
+                ->update(['precio_venta' => $productos[$cont]->precio_venta]);
+            }
+            $cont++;
+        }
+
+        
+        
+        
+        return view('producto.indexCategoria', ['productos' => $productos]);
+       
     }
     
     public function index()
