@@ -38,20 +38,14 @@
                     </div>
                 @endcan
 
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAct" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-                        Actualizar precios
-                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="collapseAct" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('seleccionarCategoria')}}">Por categoría</a>
-                        <a class="nav-link" href="{{ route('compras.create')}}">Por marca</a>
-                        <a class="nav-link" href="{{ route('compras.index')}}">Por Proveedor</a>
-                    </nav>
-                </div>
-
                 
+
+                @can('ver-categoria')
+                <a class="nav-link" href="{{ route('seleccionarCategoria')}}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-tag"></i></div>
+                    Actualizar precios
+                </a>
+            @endcan
                 
                 @can('ver-categoria')
                     <a class="nav-link" href="{{ route('categorias.index')}}">

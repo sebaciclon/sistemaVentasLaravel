@@ -6,6 +6,7 @@ use App\Http\Requests\storeProductoRequest;
 use App\Http\Requests\updateProductoRequest;
 use App\Models\Categoria;
 use App\Models\Producto;
+use App\Models\Proveedor;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -24,34 +25,38 @@ class ProductoController extends Controller
 
     public function elegirCategoria() 
     {
-        
         $categorias = Categoria::all();
+        $productos = Producto::all()->where('estado', 1);
         
-        return view('producto.elegirCategoria', ['categorias' => $categorias]);
+        $proveedores = Proveedor::all()->where('estado', 1);
+        
+        return view('producto.elegirCategoria', ['categorias' => $categorias, 'productos' => $productos,
+                                                'proveedores' => $proveedores]);
     }
 
     public function porCategoria(Request $request) 
     {
-        $productos = Producto::all()
-        ->where('categoria_id', $request->categoria_id)
-        ;
+        //$productos = Producto::all()
+        //->where('categoria_id', $request->categoria_id);
+        $productos = Producto::where('categoria_id', $request->categoria_id)->get();
         $id = $request->categoria_id;
         return view('producto.indexCategoria', ['productos' => $productos, 'id' => $id]);
     }
 
-    
-
     public function actualizarCategoria(Request $request) 
     {
         //dd($request);
-        
-        $productos = Producto::all()
-        ->where('categoria_id', $request->categoria_id);
-
+        $sizeArray = 0;
+        //$productos = Producto::all()->where('categoria_id', $request->categoria_id);
+        $productos = Producto::where('categoria_id', $request->categoria_id)->get();
+        //dd($productos);
         $cont = 0;
         $sizeArray = count($productos);
+        //dd($sizeArray);
+        
+        
         while($cont < $sizeArray) {
-            if($productos[$cont]->categoria_id ==  $request->categoria_id) {
+            //if($productos[$cont]->categoria_id ==  $request->categoria_id) {
                 $porcentaje = $request->porcentaje * $productos[$cont]->precio_venta /100;
                 $precio_final = $porcentaje + $productos[$cont]->precio_venta;
                 $productos[$cont]->precio_venta = $precio_final;
@@ -62,15 +67,52 @@ class ProductoController extends Controller
                 
                 DB::table('compra_producto')->where('id', $productos[$cont]->id)
                 ->update(['precio_venta' => $productos[$cont]->precio_venta]);
-            }
+            //}
+            $cont++;
+            
+        }
+        return redirect()->route('seleccionarCategoria')->with('success', 'Actualización de producto exitosa!');
+        //return redirect('producto.indexCategoria', ['productos' => $productos])->with('success', 'Actualización de producto exitosa!');
+    }
+
+    public function porMarca(Request $request) 
+    {
+        $productos = Producto::all()
+        ->where('marca', $request->marca);
+        
+        //$id = $request->categoria_id;
+        return view('producto.indexMarca', ['productos' => $productos]);
+    }
+
+    public function actualizarMarca(Request $request) 
+    {
+        //dd($request);
+        
+        //$productos1 = Producto::all()->where('marca', $request->marca);
+        $productos1 = Producto::where('marca', $request->marca)->get();
+        //dd($productos1);
+        $cont = 0;
+        $sizeArray = count($productos1);
+        //dd($sizeArray);
+        while($cont < $sizeArray) {
+            
+            //if($productos1[$cont]->marca == $request->marca) {
+                $porcentaje = $request->porcentaje * $productos1[$cont]->precio_venta /100;
+                $precio_final = $porcentaje + $productos1[$cont]->precio_venta;
+                //$productos[$cont]->precio_venta = $precio_final;
+
+                DB::table('productos')->where('id', $productos1[$cont]->id)
+                ->update(['precio_venta' => $precio_final]);
+
+                DB::table('compra_producto')->where('id', $productos1[$cont]->id)
+                ->update(['precio_venta' => $productos1[$cont]->precio_venta]);
+                
+               
+            //}
             $cont++;
         }
-
-        
-        
-        
-        return view('producto.indexCategoria', ['productos' => $productos]);
-       
+        return redirect()->route('seleccionarCategoria')->with('success', 'Actualización de producto exitosa!');
+        //return redirect()->route('personas.index')->with('success', 'Cliente ingresado exitosamente');
     }
     
     public function index()

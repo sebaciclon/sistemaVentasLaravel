@@ -25,11 +25,15 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 // RUTA DE USUARIO
 Route::controller(ProductoController::class)->middleware('auth')->group(function(){
-    Route::get('productos/porCategoria','porCategoria')->name('porCategoria');
     Route::get('productos/seleccionarCategoria','elegirCategoria')->name('seleccionarCategoria');
-    //Route::post('productos/actualizarPreciosPorCategoria','actualizarCategoria')->name('actualizarPreciosPorCategoria');
+
+    Route::get('productos/porCategoria','porCategoria')->name('porCategoria');
     Route::get('productos/actualizarPreciosPorCategoria','actualizarCategoria')
         ->name('actualizarPreciosPorCategoria');
+
+    Route::get('productos/porMarca','porMarca')->name('porMarca');
+    Route::get('productos/actualizarPreciosPorMarca','actualizarMarca')
+        ->name('actualizarPreciosPorMarca');
     
 });
 

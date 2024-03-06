@@ -35,18 +35,18 @@
             <li class="breadcrumb-item"><a href="{{ route('panel') }}">Inicio</a></li>
             <li class="breadcrumb-item active">Productos para actualizar precios</li>
         </ol>
-        <form action="{{ route('actualizarPreciosPorCategoria') }}" method="GET" enctype="multipart/form-data"> 
+        <form action="{{ route('actualizarPreciosPorMarca') }}" method="GET" enctype="multipart/form-data"> 
             @csrf
+            <input type="hidden" name="marca" id="marca" value="{{$productos[0]->marca}}">
             
-            <input type="hidden" name="categoria_id" id="categoria_id" value="{{$productos[0]->categoria_id}}">
             <div class="col-md-4">
-                <label for="" class="form-label mb-4">Ingrese el porcentaje de actualización <span class="text-muted">(obligatorio)</span></label>
+                <label for="" class="form-label mb-4">Ingrese el porcentaje de actualización<span class="text-muted">(obligatorio)</span></label>
                 <input required type="text" name="porcentaje" id="porcentaje" class="form-control mb-4" value="{{old('porcentaje')}}">
                 @error('porcentaje')
                     <small class="text-danger">{{ '*'. $message }}</small>
                 @enderror
             </div>
-
+            
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fa-brands fa-product-hunt"></i>
@@ -99,5 +99,7 @@
     
     <script src="{{ asset('js/datatables-simple-demo.js') }}"></script>
 
-   
+    <script>
+
+    </script>
 @endpush
