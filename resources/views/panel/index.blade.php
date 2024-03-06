@@ -192,7 +192,7 @@
                                 //use App\Models\Venta;
                                 $ventas = count(Venta::all());
                             ?>
-                            <p class="text-center fw-bold fs-4">{{ $ventas }}</p>
+                            <p class="text-center fw-bold fs-4"> No te zarpes Cecilia </p>
                         </div>
                     </div>
                 </div>

@@ -28,7 +28,9 @@ class ProductoController extends Controller
         $categorias = Categoria::all();
         $productos = Producto::all()->where('estado', 1);
         
-        $proveedores = Proveedor::all()->where('estado', 1);
+        $proveedores = Proveedor::whereHas('persona', function($query) {
+            $query->where('estado', 1);
+        })->get();
         
         return view('producto.elegirCategoria', ['categorias' => $categorias, 'productos' => $productos,
                                                 'proveedores' => $proveedores]);
@@ -114,6 +116,8 @@ class ProductoController extends Controller
         return redirect()->route('seleccionarCategoria')->with('success', 'Actualización de producto exitosa!');
         //return redirect()->route('personas.index')->with('success', 'Cliente ingresado exitosamente');
     }
+
+    
     
     public function index()
     {

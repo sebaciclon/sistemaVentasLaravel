@@ -42,8 +42,6 @@
     <div class="container card mt-6">
         <form class="card-body" action="{{ route('porCategoria')}}" method="GET">
             @csrf
-            
-    
             <div class="row mt-4">
                 <div class="col-sm-6">
                     <div class="input-group">
@@ -95,6 +93,38 @@
                         <small class="text-danger">{{ '*'. $message }}</small>
                     @enderror
                 </div>                
+            </div>
+
+            <div class="col text-center mt-4">
+                <input class="btn btn-success" type="submit" value="Seleccionar">
+            </div>
+        </form>
+    </div>
+
+    <!-- PROVEEDOR -->
+    <div class="container card mt-6">
+        <form class="card-body" action="{{ route('porProveedor')}}" method="GET">
+            @csrf
+            <div class="row mt-4">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-square-check"></i></span>
+                        <input disabled type="text" class="form-control" value="Seleccionar proveedor">
+                    </div>
+                    
+                </div>
+                <!-- SELECT CATEGORIAS -->
+                <div class="col-md-6">
+                    <select required title="Seleccione un proveedor" data-size="5" data-live-search="true" name="proveedor" id="proveedor" class="form-control selectpicker show-tick">
+                        @foreach($proveedores as $tipo)
+                            <option value="{{$tipo->id}}" {{ old('proveedor') == $tipo->id ? 'selected' : '' }}>{{$tipo->persona->nombre}}</option>
+                        @endforeach
+                    </select>
+                    @error('proveedor')
+                        <small class="text-danger">{{ '*'. $message }}</small>
+                    @enderror
+                </div>                
+                
             </div>
 
             <div class="col text-center mt-4">
