@@ -30,10 +30,10 @@
 @endif
     
     <div class="container-fluid px-4">
-        <h1 class="mt-4 text-center">Productos para actualizar precios</h1>
+        <h1 class="mt-4 text-center">Productos para actualizar precios por categoria</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('panel') }}">Inicio</a></li>
-            <li class="breadcrumb-item active">Productos para actualizar precios</li>
+            <li class="breadcrumb-item active">Productos para actualizar precios por categoria</li>
         </ol>
         <form action="{{ route('actualizarPreciosPorCategoria') }}" method="GET" enctype="multipart/form-data"> 
             @csrf

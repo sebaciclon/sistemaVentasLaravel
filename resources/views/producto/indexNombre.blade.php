@@ -30,14 +30,15 @@
 @endif
     
     <div class="container-fluid px-4">
-        <h1 class="mt-4 text-center">Productos para actualizar precios por marca</h1>
+        <h1 class="mt-4 text-center">Productos para actualizar precios por nombre</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('panel') }}">Inicio</a></li>
-            <li class="breadcrumb-item active">Productos para actualizar precios por marca</li>
+            <li class="breadcrumb-item active">Productos para actualizar precios por nombre</li>
         </ol>
-        <form action="{{ route('actualizarPreciosPorMarca') }}" method="GET" enctype="multipart/form-data"> 
+        <!-- -->
+        <form action="{{ route('actualizarPreciosPorNombre') }}" method="GET" enctype="multipart/form-data"> 
             @csrf
-            <input type="hidden" name="marca" id="marca" value="{{$productos[0]->marca}}">
+            <input type="hidden" name="nombre" id="nombre" value="{{$productos[0]->nombre}}">
             
             <div class="col-md-4">
                 <label for="" class="form-label mb-4">Ingrese el porcentaje de actualización<span class="text-muted">(obligatorio)</span></label>
@@ -56,7 +57,6 @@
                     <table id="datatablesSimple" class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Categoría</th>
                                 <th>Nombre</th>
                                 <th>Marca</th>
                                 <th>Precio</th>
@@ -65,21 +65,11 @@
                         
                         <tbody>
                             @foreach ($productos as $producto)
-                                
                                 <tr>
-                                    <td>
-                                        <div class="container">
-                                            <div class="row">
-                                                <span class="m-1 rounded-pill p-1 bg-secondary text-white text-center">{{$producto->categoria->nombre}}</span>
-                                            </div>
-                                        </div>
-                                    </td>
                                     <td>{{$producto->nombre}}</td>
                                     <td>{{$producto->marca}}</td>
-                                    
                                     <td>{{$producto->precio_venta}}</td>
                                 </tr>
-                                
                             @endforeach
                         </tbody>
                     </table>

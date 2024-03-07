@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\storeProductoRequest;
 use App\Http\Requests\updateProductoRequest;
 use App\Models\Categoria;
+use App\Models\Compra;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ class ProductoController extends Controller
         $this->middleware('permission:eliminar-producto', ['only' => ['destroy']]);
     }
 
+    // ELEGIR CATEGORIA, MARCA O PROVEEDOR
     public function elegirCategoria() 
     {
         $categorias = Categoria::all();
@@ -36,15 +38,15 @@ class ProductoController extends Controller
                                                 'proveedores' => $proveedores]);
     }
 
+    // MUESTRA LOS PRODUCTOS DE UNA DETERMINADA CATEGORIA
     public function porCategoria(Request $request) 
     {
-        //$productos = Producto::all()
-        //->where('categoria_id', $request->categoria_id);
         $productos = Producto::where('categoria_id', $request->categoria_id)->get();
         $id = $request->categoria_id;
         return view('producto.indexCategoria', ['productos' => $productos, 'id' => $id]);
     }
 
+    // ACTUALIZA LOS PRECIOS DE LOS PRODUCTOS DE UNA DETERMINADA CATEGORIA
     public function actualizarCategoria(Request $request) 
     {
         //dd($request);
@@ -58,64 +60,86 @@ class ProductoController extends Controller
         
         
         while($cont < $sizeArray) {
-            //if($productos[$cont]->categoria_id ==  $request->categoria_id) {
-                $porcentaje = $request->porcentaje * $productos[$cont]->precio_venta /100;
-                $precio_final = $porcentaje + $productos[$cont]->precio_venta;
-                $productos[$cont]->precio_venta = $precio_final;
+            $porcentaje = $request->porcentaje * $productos[$cont]->precio_venta /100;
+            $precio_final = $porcentaje + $productos[$cont]->precio_venta;
+            $productos[$cont]->precio_venta = $precio_final;
 
-                DB::table('productos')->where('id', $productos[$cont]->id)
-                ->update(['precio_venta' => $precio_final]);
-
+            DB::table('productos')->where('id', $productos[$cont]->id)
+            ->update(['precio_venta' => $precio_final]);
                 
-                DB::table('compra_producto')->where('id', $productos[$cont]->id)
-                ->update(['precio_venta' => $productos[$cont]->precio_venta]);
-            //}
+            DB::table('compra_producto')->where('producto_id', $productos[$cont]->id)
+            ->update(['precio_venta' => $productos[$cont]->precio_venta]);
             $cont++;
-            
         }
         return redirect()->route('seleccionarCategoria')->with('success', 'Actualización de producto exitosa!');
-        //return redirect('producto.indexCategoria', ['productos' => $productos])->with('success', 'Actualización de producto exitosa!');
     }
 
+    // MUESTRA LOS PRODUCTOS DE UNA DETERMINADA MARCA
     public function porMarca(Request $request) 
     {
-        $productos = Producto::all()
-        ->where('marca', $request->marca);
+        $productos = Producto::where('marca', $request->marca)->get();
         
-        //$id = $request->categoria_id;
         return view('producto.indexMarca', ['productos' => $productos]);
     }
 
+    // ACTUALIZA LOS PRECIOS DE LOS PRODUCTOS DE UNA DETERMINADA MARCA
     public function actualizarMarca(Request $request) 
     {
         //dd($request);
-        
-        //$productos1 = Producto::all()->where('marca', $request->marca);
         $productos1 = Producto::where('marca', $request->marca)->get();
+        $cont = 0;
+        $sizeArray = count($productos1);
+        while($cont < $sizeArray) {
+            
+            $porcentaje = $request->porcentaje * $productos1[$cont]->precio_venta /100;
+            $precio_final = $porcentaje + $productos1[$cont]->precio_venta;
+            $productos1[$cont]->precio_venta = $precio_final;
+
+            DB::table('productos')->where('id', $productos1[$cont]->id)
+            ->update(['precio_venta' => $precio_final]);
+
+            DB::table('compra_producto')->where('producto_id', $productos1[$cont]->id)
+            ->update(['precio_venta' => $productos1[$cont]->precio_venta]);
+                
+            $cont++;
+        }
+        return redirect()->route('seleccionarCategoria')->with('success', 'Actualización de producto exitosa!');
+    }
+
+    // MUESTRA LOS PRODUCTOS DE UN DETERMINADO NOMBRE
+    public function porNombre(Request $request) 
+    {
+        $productos = Producto::where('nombre', $request->nombre)->get();
+        
+        return view('producto.indexNombre', ['productos' => $productos]);
+    }
+
+    // ACTUALIZA LOS PRECIOS DE LOS PRODUCTOS DE UN DETERMINADO NOMBRE
+    public function actualizarNombre(Request $request) 
+    {
+        //dd($request);
+        $productos1 = Producto::where('nombre', $request->nombre)->get();
         //dd($productos1);
         $cont = 0;
         $sizeArray = count($productos1);
         //dd($sizeArray);
         while($cont < $sizeArray) {
             
-            //if($productos1[$cont]->marca == $request->marca) {
-                $porcentaje = $request->porcentaje * $productos1[$cont]->precio_venta /100;
-                $precio_final = $porcentaje + $productos1[$cont]->precio_venta;
-                //$productos[$cont]->precio_venta = $precio_final;
+            $porcentaje = $request->porcentaje * $productos1[$cont]->precio_venta /100;
+            $precio_final = $porcentaje + $productos1[$cont]->precio_venta;
+            $productos1[$cont]->precio_venta = $precio_final;
+            DB::table('productos')->where('id', $productos1[$cont]->id)
+            ->update(['precio_venta' => $precio_final]);
 
-                DB::table('productos')->where('id', $productos1[$cont]->id)
-                ->update(['precio_venta' => $precio_final]);
+            DB::table('compra_producto')->where('producto_id', $productos1[$cont]->id)
+            ->update(['precio_venta' => $productos1[$cont]->precio_venta]);
 
-                DB::table('compra_producto')->where('id', $productos1[$cont]->id)
-                ->update(['precio_venta' => $productos1[$cont]->precio_venta]);
-                
-               
-            //}
+            
             $cont++;
         }
         return redirect()->route('seleccionarCategoria')->with('success', 'Actualización de producto exitosa!');
-        //return redirect()->route('personas.index')->with('success', 'Cliente ingresado exitosamente');
     }
+
 
     
     

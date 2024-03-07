@@ -35,9 +35,9 @@ Route::controller(ProductoController::class)->middleware('auth')->group(function
     Route::get('productos/actualizarPreciosPorMarca','actualizarMarca')
         ->name('actualizarPreciosPorMarca');
 
-    Route::get('productos/porProveedor','porProveedor')->name('porProveedor');
-    Route::get('productos/actualizarPreciosPorProveedor','actualizarProveedor')
-        ->name('actualizarPreciosPorProveedor');
+    Route::get('productos/porNombre','porNombre')->name('porNombre');
+    Route::get('productos/actualizarPreciosPorNombre','actualizarNombre')
+        ->name('actualizarPreciosPorNombre');
 });
 
 Route::resources([
