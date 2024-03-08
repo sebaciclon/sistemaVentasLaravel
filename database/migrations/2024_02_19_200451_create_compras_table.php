@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
             $table->dateTime('fecha_hora');
-            $table->string('nro_comprobante', 255);
+            $table->string('nro_comprobante', 255)->nullable();
             $table->decimal('total', 8 ,2)->unsigned();
             $table->tinyInteger('estado')->default(1);
             $table->unsignedBigInteger('comprobante_id')->nullable();

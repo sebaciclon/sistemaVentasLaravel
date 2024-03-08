@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\storeActualizacionPreciosRequest;
 use App\Http\Requests\storeProductoRequest;
 use App\Http\Requests\updateProductoRequest;
 use App\Models\Categoria;
@@ -47,7 +48,7 @@ class ProductoController extends Controller
     }
 
     // ACTUALIZA LOS PRECIOS DE LOS PRODUCTOS DE UNA DETERMINADA CATEGORIA
-    public function actualizarCategoria(Request $request) 
+    public function actualizarCategoria(storeActualizacionPreciosRequest $request) 
     {
         //dd($request);
         $sizeArray = 0;
@@ -56,8 +57,6 @@ class ProductoController extends Controller
         //dd($productos);
         $cont = 0;
         $sizeArray = count($productos);
-        //dd($sizeArray);
-        
         
         while($cont < $sizeArray) {
             $porcentaje = $request->porcentaje * $productos[$cont]->precio_venta /100;
@@ -83,7 +82,7 @@ class ProductoController extends Controller
     }
 
     // ACTUALIZA LOS PRECIOS DE LOS PRODUCTOS DE UNA DETERMINADA MARCA
-    public function actualizarMarca(Request $request) 
+    public function actualizarMarca(storeActualizacionPreciosRequest $request) 
     {
         //dd($request);
         $productos1 = Producto::where('marca', $request->marca)->get();
@@ -115,7 +114,7 @@ class ProductoController extends Controller
     }
 
     // ACTUALIZA LOS PRECIOS DE LOS PRODUCTOS DE UN DETERMINADO NOMBRE
-    public function actualizarNombre(Request $request) 
+    public function actualizarNombre(storeActualizacionPreciosRequest $request) 
     {
         //dd($request);
         $productos1 = Producto::where('nombre', $request->nombre)->get();

@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="col-sm-8">
-                    <input disabled type="text" class="form-control" value="{{$venta->comprobante->tipo_comprobante}}">
+                    <input disabled type="text" class="form-control" value="{{$venta->comprobante ? $venta->comprobante->tipo_comprobante : ''}}">
                 </div>
             </div>
             <!-- N° COMPROBANTE-->
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="col-sm-8">
-                    <input disabled type="text" class="form-control" value="{{$venta->cliente->persona->nombre}}">
+                    <input disabled type="text" class="form-control" value="{{$venta->cliente ? $venta->cliente->persona->nombre : ''}}">
                 </div>
             </div>
                 <!-- FECHA-->

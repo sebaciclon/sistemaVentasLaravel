@@ -22,10 +22,10 @@ class storeVentaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cliente_id' => 'required|exists:clientes,id',
+            //'cliente_id' => 'required|exists:clientes,id',
             'user_id' => 'required|exists:users,id',
-            'comprobante_id' => 'required|exists:comprobantes,id',
-            'nro_comprobante' => 'required|max:255|unique:ventas,nro_comprobante',
+            //'comprobante_id' => 'required|exists:comprobantes,id',
+            //'nro_comprobante' => 'required|max:255|unique:ventas,nro_comprobante',
             
             'fecha_hora1' => 'required',
             'total' => 'required',

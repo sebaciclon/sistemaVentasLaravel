@@ -41,11 +41,14 @@
             <input type="hidden" name="categoria_id" id="categoria_id" value="{{$productos[0]->categoria_id}}">
             <div class="col-md-4">
                 <label for="" class="form-label mb-4">Ingrese el porcentaje de actualización <span class="text-muted">(obligatorio)</span></label>
-                <input required type="text" name="porcentaje" id="porcentaje" class="form-control mb-4" value="{{old('porcentaje')}}">
-                @error('porcentaje')
-                    <small class="text-danger">{{ '*'. $message }}</small>
-                @enderror
+                <input type="text" name="porcentaje" id="porcentaje" class="form-control mb-4" value="{{old('porcentaje')}}">
+                <div class="mb-2">
+                    @error('porcentaje')
+                        <small class="text-danger">{{ '*'. $message }}</small>
+                    @enderror
+                </div>
             </div>
+            
 
             <div class="card mb-4">
                 <div class="card-header">

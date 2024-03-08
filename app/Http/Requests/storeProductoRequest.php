@@ -28,7 +28,8 @@ class storeProductoRequest extends FormRequest
             'marca' => 'nullable|max:255',
             'fecha_vencimiento' => 'nullable|date|max:20',
             'img_path' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
-            'categoria_id' => 'required|integer|exists:categorias,id'
+            'categoria_id' => 'required|integer|exists:categorias,id',
+            
         ];
     }
 
@@ -48,6 +49,8 @@ class storeProductoRequest extends FormRequest
             'img_path.mimes' => 'El campo IMAGEN sólo acepta formatos png, jpg o jpeg.',
             'categoria_id.required' => 'El campo CATEGORIA es obligatorio.',
             'categoria_id.integer' => 'El campo CATEGORIA sólo acepta números enteros.',
+
+            
         ];
     }
 }

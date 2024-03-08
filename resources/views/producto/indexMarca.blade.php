@@ -41,7 +41,7 @@
             
             <div class="col-md-4">
                 <label for="" class="form-label mb-4">Ingrese el porcentaje de actualización<span class="text-muted">(obligatorio)</span></label>
-                <input required type="text" name="porcentaje" id="porcentaje" class="form-control mb-4" value="{{old('porcentaje')}}">
+                <input type="text" name="porcentaje" id="porcentaje" class="form-control mb-4" value="{{old('porcentaje')}}">
                 @error('porcentaje')
                     <small class="text-danger">{{ '*'. $message }}</small>
                 @enderror

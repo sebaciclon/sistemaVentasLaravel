@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="col-sm-8">
-                    <input disabled type="text" class="form-control" value="{{$compra->comprobante->tipo_comprobante}}">
+                    <input disabled type="text" class="form-control" value="{{$compra->comprobante ? $compra->comprobante->tipo_comprobante : ''}}">
                 </div>
             </div>
             <!-- N° COMPROBANTE-->
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="col-sm-8">
-                    <input disabled type="text" class="form-control" value="{{$compra->proveedor->persona->nombre}}">
+                    <input disabled type="text" class="form-control" value="{{$compra->proveedor ? $compra->proveedor->persona->nombre : ''}}">
                 </div>
             </div>
                 <!-- FECHA-->

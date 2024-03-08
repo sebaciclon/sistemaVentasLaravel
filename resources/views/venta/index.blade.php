@@ -66,9 +66,19 @@
                                     }}
                                 </td>
                                 <td>{{ $item->user->name}}</td>
-                                <td>{{ $item->comprobante->tipo_comprobante}}</td>
+                                @if ($item->comprobante_id != null)
+                                    <td>{{ $item->comprobante->tipo_comprobante}}</td>
+                                @else
+                                    <td></td>
+                                @endif
+                                
                                 <td>{{ $item->nro_comprobante}}</td>
-                                <td>{{ $item->cliente->persona->nombre}}</td>
+                                @if ($item->cliente_id != null)
+                                    <td>{{ $item->cliente->persona->nombre}}</td>
+                                @else
+                                    <td></td>
+                                @endif
+                                
                                 <td>{{ $item->total}}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">

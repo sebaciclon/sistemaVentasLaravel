@@ -65,10 +65,18 @@
                                         \Carbon\Carbon::parse($item->fecha_hora)->format('H:i')
                                     }}
                                 </td>
-                                
-                                <td>{{ $item->comprobante->tipo_comprobante}}</td>
+                                @if ($item->comprobante_id != null)
+                                    <td>{{ $item->comprobante->tipo_comprobante}}</td>
+                                @else
+                                    <td></td>
+                                @endif
                                 <td>{{ $item->nro_comprobante}}</td>
+                                @if ($item->proveedor_id != null)
                                 <td>{{ $item->proveedor->persona->nombre}}</td>
+                                @else
+                                    <td></td>
+                                @endif
+                                
                                 <td>{{ $item->total}}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">

@@ -168,7 +168,7 @@
                             <!-- N° COMPROBANTE-->
                             <div class="col-md-12">
                                 <label for="nro_comprobante" class="form-label">N° comprobante <span class="text-muted">(obligatorio)</span></label>
-                                <input required type="text" name="nro_comprobante" id="nro_comprobante" class="form-control" value="{{old('nro_comprobante')}}">
+                                <input type="text" name="nro_comprobante" id="nro_comprobante" class="form-control" value="{{old('nro_comprobante')}}">
                                 @error('nro_comprobante')
                                     <small class="text-danger">{{ '*'. $message }}</small>
                                 @enderror
