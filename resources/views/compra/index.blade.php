@@ -77,7 +77,7 @@
                                     <td></td>
                                 @endif
                                 
-                                <td>{{ $item->total}}</td>
+                                <td>$ {{ $item->total}}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                         <form action="{{ route('compras.show', ['compra' => $item]) }}" method="GET">

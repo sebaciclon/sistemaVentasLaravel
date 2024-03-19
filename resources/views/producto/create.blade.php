@@ -61,17 +61,10 @@
                             <small class="text-danger">{{ '*'. $message }}</small>
                         @enderror
                     </div>
-                    <!-- STOCK 
-                    <div class="col-md-4">
-                        <label for="stock" class="form-label">Stock <span class="text-muted">(obligatorio)</span></label>
-                        <input type="text" name="stock" id="stock" class="form-control" value="{{old('stock')}}">
-                        @error('stock')
-                            <small class="text-danger">{{ '*'. $message }}</small>
-                        @enderror
-                    </div>-->
+                    
                     <!-- CODIGO -->
                     <div class="col-md-4">
-                        <label for="codigo" class="form-label">Codigo <span class="text-muted">(obligatorio)</span></label>
+                        <label for="codigo" class="form-label">Codigo</label>
                         <input type="text" name="codigo" id="codigo" class="form-control" value="{{old('codigo')}}">
                         @error('codigo')
                             <small class="text-danger">{{ '*'. $message }}</small>

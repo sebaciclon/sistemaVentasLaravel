@@ -84,12 +84,12 @@
                     </a>
                 @endcan
 
-                @can('ver-role')
+                <!--@can('ver-role')
                     <a class="nav-link" href="{{ route('roles.index')}}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-person-circle-plus"></i></div>
                         Roles
                     </a>
-                @endcan
+                @endcan-->
 
                 
             </div>

@@ -50,11 +50,9 @@
                             <th>Categoría</th>
                             <th>Nombre</th>
                             <th>Marca</th>
-                            <!--<th>Descripcion</th>
-                            <th>Stock</th>-->
-                            <th>Codigo</th>
-                            <!--<th>Fecha de vencimiento</th>
-                            <th>Imagen</th>-->
+                            <th>Precio venta</th>
+                            <th>Stock</th>
+                            
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
@@ -73,11 +71,10 @@
                                 </td>
                                 <td>{{$producto->nombre}}</td>
                                 <td>{{$producto->marca}}</td>
-                                <!--<td>{{$producto->descripcion}}</td>
-                                <td>{{$producto->stock}}</td>-->
-                                <td>{{$producto->codigo}}</td>
-                                <!--<td>{{$producto->fecha_vencimiento}}</td>
-                                <td>{{$producto->img_path}}</td>-->
+                                <td>$ {{$producto->precio_venta}}</td>
+                                <td>{{$producto->stock}}</td>
+                                
+                                
                                 
                                 <td>
                                     @if ($producto->estado == 1)

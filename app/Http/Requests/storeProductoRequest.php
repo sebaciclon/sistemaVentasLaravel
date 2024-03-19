@@ -24,7 +24,8 @@ class storeProductoRequest extends FormRequest
         return [
             'nombre' => 'required|max:100|',
             'descripcion' => 'nullable|max:255',
-            'codigo' => 'required|integer|unique:productos,codigo',
+            //'codigo' => 'required|integer|unique:productos,codigo',
+            'codigo' => 'nullable|integer|unique:productos,codigo',
             'marca' => 'nullable|max:255',
             'fecha_vencimiento' => 'nullable|date|max:20',
             'img_path' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
@@ -38,7 +39,7 @@ class storeProductoRequest extends FormRequest
             'nombre.required' => 'El campo NOMBRE es obligatorio.',
             'nombre.max' => 'El campo NOMBRE tiene un maximo de 100 caracteres.',
             'descripcion.max' => 'El campo DESCRIPCION tiene un maximo de 255 caracteres.',
-            'codigo.required' => 'El campo CODIGO es obligatorio.',
+            
             //'codigo.max' => 'El campo CODIGO tiene un maximo de 100 caracteres.',
             'codigo.unique' => 'Ya existe el codigo que intenta ingresar.',
             'codigo.integer' => 'El campo CODIGO sólo acepta valores enteros.',
