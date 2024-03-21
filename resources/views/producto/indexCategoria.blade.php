@@ -35,11 +35,12 @@
             <li class="breadcrumb-item"><a href="{{ route('panel') }}">Inicio</a></li>
             <li class="breadcrumb-item active">Productos para actualizar precios por categoria</li>
         </ol>
+        @if(isset($productos[0])) 
         <form action="{{ route('actualizarPreciosPorCategoria') }}" method="GET" enctype="multipart/form-data"> 
             @csrf
 
             
-            @if(isset($productos[0]))    
+               
                       
             <input type="hidden" name="categoria_id" id="categoria_id" value="{{$productos[0]->categoria_id}}">
             <div class="col-md-4">
@@ -97,10 +98,19 @@
                 <button type="submit" class="btn btn-primary">Actualizar</button>
                 
             </div>
-            @else
-                <h3 class="col-12 text-center" style="color: red">no hay productos cargados en la categoría seleccionada</h3>
-            @endif
+           
         </form>
+        @else
+        <h3 class="col-12 text-center" style="color: red">no hay productos cargados en la categoría seleccionada</h3>
+        <form action="{{ route('seleccionarCategoria') }}" method="GET">
+            @csrf
+            <div style="display: flex; justify-content: center;">
+                <button action="{{ route('seleccionarCategoria')}}" class="btn btn-success">Volver</button>
+            </div>
+        </form>
+            
+        
+    @endif
     </div>
 @endsection
     
