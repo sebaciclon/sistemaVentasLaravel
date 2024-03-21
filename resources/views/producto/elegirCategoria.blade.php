@@ -69,7 +69,7 @@
             </div>
         </form>
     </div>
-    <!-- POR MARCA -->
+    <!-- POR MARCA
     <div class="container card mt-4">
         <form class="card-body" action="{{ route('porMarca')}}" method="GET">
             @csrf
@@ -82,7 +82,7 @@
                         <input disabled type="text" class="form-control" value="Seleccionar marca">
                     </div>
                 </div>
-                <!-- SELECT MARCAS -->
+                
                 <div class="col-md-6">
                     <select required title="Seleccione una marca" data-size="5" data-live-search="true" name="marca" id="marca" class="form-control selectpicker show-tick">
                         @foreach($productos->unique('marca')->whereNotNull('marca') as $tipo)
@@ -99,7 +99,7 @@
                 <input class="btn btn-success" type="submit" value="Seleccionar">
             </div>
         </form>
-    </div>
+    </div> -->
 
     <!-- POR NOMBRE -->
     <div class="container card mt-6">
