@@ -37,8 +37,11 @@
         </ol>
         <form action="{{ route('actualizarPreciosPorCategoria') }}" method="GET" enctype="multipart/form-data"> 
             @csrf
-            
-            <input type="hidden" name="categoria_id" id="categoria_id" value="{{$productos[0]->categoria_id}}">
+
+            @forelse ($productos as $item)
+                
+                      
+            <input type="hidden" name="categoria_id" id="categoria_id" value="{{$item->categoria_id}}">
             <div class="col-md-4">
                 <label for="" class="form-label mb-4">Ingrese el porcentaje de actualización <span class="text-muted">(obligatorio)</span></label>
                 <input type="text" name="porcentaje" id="porcentaje" class="form-control mb-4" value="{{old('porcentaje')}}">
@@ -88,11 +91,15 @@
                     </table>
                 </div>
             </div>
+            
             <!-- BOTON GUARDAR -->
             <div class="col-12 text-center">
                 <button type="submit" class="btn btn-primary">Actualizar</button>
                 
             </div>
+            @empty
+                <h3 class="col-12 text-center" style="color: red">no hay productos cargados en la categoría seleccionada</h3>
+            @endforelse  
         </form>
     </div>
 @endsection
