@@ -42,7 +42,7 @@
 
                 @can('ver-categoria')
                 <a class="nav-link" href="{{ route('seleccionarCategoria')}}">
-                    <div class="sb-nav-link-icon"><i class="fa-solid fa-tag"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-pen-to-square"></i></div>
                     Actualizar precios
                 </a>
             @endcan

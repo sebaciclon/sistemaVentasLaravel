@@ -185,14 +185,14 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-8">
-                            <i class="fa-solid fa-sack-dollar"></i><span class="m-1">Actualizar precios</span>
+                            <i class="fa-solid fa-pen-to-square"></i><span class="m-1">Actualizar precios</span>
                         </div>
                         <div class="col-4">
                             <?php
                                 //use App\Models\Venta;
                                 $ventas = count(Venta::all());
                             ?>
-                            <p class="text-center fw-bold fs-4"> No te zarpes Cecilia </p>
+                            <p class="text-center fw-bold fs-4">0 </p>
                         </div>
                     </div>
                 </div>

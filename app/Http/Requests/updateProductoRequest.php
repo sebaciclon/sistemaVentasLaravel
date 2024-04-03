@@ -25,7 +25,7 @@ class updateProductoRequest extends FormRequest
         return [
             'nombre' => 'required|unique:productos,nombre,'.$producto->id.'|max:100',
             'descripcion' => 'nullable|max:255',
-            'codigo' => 'required|max:100',
+            'codigo' => 'max:100',
             'marca' => 'nullable|max:255',
             'fecha_vencimiento' => 'nullable|date|max:20',
             'img_path' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
@@ -38,7 +38,7 @@ class updateProductoRequest extends FormRequest
             'nombre.required' => 'El campo NOMBRE es obligatorio.',
             'nombre.max' => 'El campo NOMBRE tiene un maximo de 100 caracteres.',
             'descripcion.max' => 'El campo DESCRIPCION tiene un maximo de 255 caracteres.',
-            'codigo.required' => 'El campo CODIGO es obligatorio.',
+            //'codigo.required' => 'El campo CODIGO es obligatorio.',
             'codigo.max' => 'El campo CODIGO tiene un maximo de 100 caracteres.',
             'marca.max' => 'El campo MARCA tiene un maximo de 255 caracteres.',
             'fecha_vencimiento.date' => 'El campo FECHA VENCIMIENTO es de tipo fecha.',
